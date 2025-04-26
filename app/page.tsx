@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Home() {
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -8,7 +10,9 @@ export default function Home() {
             Searchengine optimization socks configurator is a dummy website to
             learn and test SEO by configurating socks.
           </p>
-          <button className="btn btn-primary">Configure Socks</button>
+          <Link href="/socks/red/m/cotton" className="btn btn-primary">
+            Configure Socks
+          </Link>
         </div>
       </div>
     </div>
