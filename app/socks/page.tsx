@@ -23,8 +23,8 @@ export async function generateMetadata({
   const material = loadedSearchParams.material || "cotton";
 
   return {
-    title: `${color} ${material} socks in ${size} size | SEOSOKO`,
-    description: `Buy premium ${color} socks made of ${material} in ${size}. Customize your perfect socks today at SEOSOKO.`,
+    title: `${color} ${material} socks in ${size} size | SEOSOCO`,
+    description: `Buy premium ${color} socks made of ${material} in ${size}. Customize your perfect socks today at SEOSOCO.`,
   };
 }
 
