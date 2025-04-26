@@ -1,14 +1,43 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 
-export type SockProps = {
-  color: string;
-  material: string;
-  size: string;
+export type Props = {
+  params: {
+    color: string;
+    material: string;
+    size: string;
+  };
 };
 
-export default function Page(props: SockProps) {
-  const { color, material, size } = props;
+// For SEO: set dynamic title and description
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}): Promise<Metadata> {
+  const loadedSearchParams = await searchParams;
+
+  const color = loadedSearchParams.color || "red";
+  const size = loadedSearchParams.size || "m";
+  const material = loadedSearchParams.material || "cotton";
+
+  return {
+    title: `${color} ${material} socks in ${size} size | SEOSOKO`,
+    description: `Buy premium ${color} socks made of ${material} in ${size}. Customize your perfect socks today at SEOSOKO.`,
+  };
+}
+
+export default async function SockPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const loadedSearchParams = await searchParams;
+
+  const color = loadedSearchParams.color || "red";
+  const size = loadedSearchParams.size || "m";
+  const material = loadedSearchParams.material || "cotton";
 
   const colors = ["red", "blue", "green"];
   const sizes = ["xs", "s", "m", "l", "xl", "xxl"];
@@ -21,7 +50,7 @@ export default function Page(props: SockProps) {
           <h1 className="text-5xl font-bold text-center">
             Configure Your Socks
           </h1>
-          <div className="py-6 space-y-4">
+          <div className="py-6 space-y-4 p-6">
             {/* Display the image based on the selected color */}
             <div className="flex justify-center">
               <Image
@@ -38,7 +67,7 @@ export default function Page(props: SockProps) {
                 {colors.map((c) => (
                   <Link
                     key={c}
-                    href={`/socks/${c}/${size}/${material}`}
+                    href={`/socks?color=${c}&size=${size}&material=${material}`}
                     className={`btn  ${c === color ? "btn-active" : ""}`}
                   >
                     {c}
@@ -52,7 +81,7 @@ export default function Page(props: SockProps) {
                 {sizes.map((s) => (
                   <Link
                     key={s}
-                    href={`/socks/${color}/${s}/${material}`}
+                    href={`/socks?color=${color}&size=${s}&material=${material}`}
                     className={`btn  ${s === size ? "btn-active" : ""}`}
                   >
                     {s}
@@ -66,7 +95,7 @@ export default function Page(props: SockProps) {
                 {materials.map((m) => (
                   <Link
                     key={m}
-                    href={`/socks/${color}/${size}/${m}`}
+                    href={`/socks?color=${color}&size=${size}&material=${m}`}
                     className={`btn  ${m === material ? "btn-active" : ""}`}
                   >
                     {m}

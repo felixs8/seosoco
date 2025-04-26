@@ -10,7 +10,7 @@ export default function Home() {
             Searchengine optimization socks configurator is a dummy website to
             learn and test SEO by configurating socks.
           </p>
-          <Link href="/socks/red/m/cotton" className="btn btn-primary">
+          <Link href="/socks" className="btn btn-primary">
             Configure Socks
           </Link>
         </div>
